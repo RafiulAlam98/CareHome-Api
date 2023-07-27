@@ -17,12 +17,12 @@ export type ICareHome = {
   location: string
   owner: string
   img: string
-  price: number
+  price: string
   room: IRoomInfo
   personIncharge: string
   localAuthority: string
   admissionRestrictionAge: number
-  performance: string
+  performance: IPerformance
   logo?: string
   quote?: string
 }

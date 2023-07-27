@@ -11,7 +11,7 @@ const addCareHome = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic Semester is created successfully!',
+    message: 'New Care Home added successfully!',
     data: result,
   })
 })

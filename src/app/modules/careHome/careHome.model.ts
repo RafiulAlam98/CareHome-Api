@@ -5,7 +5,6 @@ const CareHomeSchema = new Schema<ICareHome>({
   title: {
     type: String,
     required: true,
-    unique: true,
   },
   location: {
     type: String,
@@ -20,7 +19,7 @@ const CareHomeSchema = new Schema<ICareHome>({
     required: true,
   },
   price: {
-    type: Number,
+    type: String,
     required: true,
   },
   room: {
@@ -49,7 +48,24 @@ const CareHomeSchema = new Schema<ICareHome>({
     required: true,
   },
   performance: {
-    type: String,
+    type: {
+      caring: {
+        type: String,
+        required: true,
+      },
+      effective: {
+        type: String,
+        required: true,
+      },
+      responsive: {
+        type: String,
+        required: true,
+      },
+      safe: {
+        type: String,
+        required: true,
+      },
+    },
     required: true,
   },
   logo: {
