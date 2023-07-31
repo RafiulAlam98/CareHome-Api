@@ -22,6 +22,13 @@ const getAllCareHomeService = async () => {
   const result = await CareHome.find()
   return result
 }
+const getSingleCareHomeService = async (id: string) => {
+  const result = await CareHome.findOne({ _id: id })
+  if (!result) {
+    throw Error('Care Home not found')
+  }
+  return result
+}
 const createAwardService = async (payload: IAward) => {
   const session = await mongoose.startSession()
   let result
@@ -134,6 +141,7 @@ const createReviewService = async (payload: IReviews) => {
 export const CareHomeService = {
   addCareHomeService,
   getAllCareHomeService,
+  getSingleCareHomeService,
   createAwardService,
   createServices,
   createTeamService,
