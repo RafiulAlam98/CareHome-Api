@@ -26,7 +26,33 @@ const getAllCareHome = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
+const createAward = catchAsync(async (req: Request, res: Response) => {
+  const { ...data } = req.body
+  const result = await CareHomeService.createAwardService(data)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Award added successfully!',
+    data: result,
+  })
+})
+const createService = catchAsync(async (req: Request, res: Response) => {
+  const { ...data } = req.body
+
+  const result = await CareHomeService.createServices(data)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Service added successfully!',
+    data: result,
+  })
+})
+
 export const CareHomeController = {
   addCareHome,
   getAllCareHome,
+  createAward,
+  createService,
 }
