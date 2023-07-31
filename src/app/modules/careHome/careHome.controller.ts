@@ -49,10 +49,49 @@ const createService = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+const createTeam = catchAsync(async (req: Request, res: Response) => {
+  const { ...data } = req.body
+
+  const result = await CareHomeService.createTeamService(data)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Team added successfully!',
+    data: result,
+  })
+})
+const createFacility = catchAsync(async (req: Request, res: Response) => {
+  const { ...data } = req.body
+
+  const result = await CareHomeService.createFacility(data)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Facilty added successfully!',
+    data: result,
+  })
+})
+const createNewsEvent = catchAsync(async (req: Request, res: Response) => {
+  const { ...data } = req.body
+
+  const result = await CareHomeService.createNewsEventService(data)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'News Event added successfully!',
+    data: result,
+  })
+})
 
 export const CareHomeController = {
   addCareHome,
   getAllCareHome,
   createAward,
   createService,
+  createTeam,
+  createFacility,
+  createNewsEvent,
 }

@@ -104,6 +104,46 @@ const CareHomeSchema = new Schema<ICareHome>({
       },
     },
   },
+  careHomeTeam: {
+    type: {
+      name: {
+        type: String,
+        required: true,
+      },
+      jobTitle: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+      profileImg: {
+        type: String,
+        required: false,
+      },
+    },
+  },
+  facilities: {
+    type: {
+      facilityType: {
+        type: String,
+        required: true,
+      },
+    },
+  },
+  newsEvent: {
+    type: {
+      totalEvent: {
+        type: String,
+        required: true,
+      },
+      totalNews: {
+        type: String,
+        required: true,
+      },
+    },
+  },
 })
 
 export const CareHome = model<ICareHome, CareHomeModel>(
