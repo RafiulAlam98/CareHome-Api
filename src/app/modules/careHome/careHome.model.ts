@@ -144,6 +144,30 @@ const CareHomeSchema = new Schema<ICareHome>({
       },
     },
   },
+  reviews: {
+    type: {
+      overallExperience: {
+        type: Number,
+        required: true,
+      },
+      dateSubmitted: {
+        type: String,
+        required: true,
+      },
+      reviewerName: {
+        type: String,
+        required: true,
+      },
+      reviewPublisDate: {
+        type: String,
+        required: true,
+      },
+      reviewDescription: {
+        type: String,
+        required: true,
+      },
+    },
+  },
 })
 
 export const CareHome = model<ICareHome, CareHomeModel>(

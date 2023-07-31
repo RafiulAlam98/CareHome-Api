@@ -4,9 +4,8 @@ import { IService } from '../careHomeService/careHomeService.interface'
 import { ICareTeam } from '../careHomeTeam/careHomeTeam.interface'
 import { IFacilities } from '../facilities/facilities.interface'
 import { INewsEvent } from '../newsEvent/newsEvent.interface'
-import { IRegCategory } from '../registrationCareCat/registrationCareCat.interface'
+
 import { IReviews } from '../reviews/reviews.interface'
-import { ISpecialCareCategory } from '../specialCare/specialCare.interface'
 
 export type IRoomInfo = {
   totalRoom: number
@@ -38,8 +37,6 @@ export type ICareHome = {
   careHomeTeam?: ICareTeam
   facilities?: IFacilities
   newsEvent?: INewsEvent
-  regCategory?: IRegCategory
   reviews?: IReviews
-  specialCare?: ISpecialCareCategory
 }
 export type CareHomeModel = Model<ICareHome, Record<string, unknown>>

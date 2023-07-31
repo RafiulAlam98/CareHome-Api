@@ -11,6 +11,8 @@ import { Team } from '../careHomeTeam/careHomeTeam.model'
 import { Facility } from '../facilities/facilities.model'
 import { INewsEvent } from '../newsEvent/newsEvent.interface'
 import { NewsEvent } from '../newsEvent/newsEvent.model'
+import { IReviews } from '../reviews/reviews.interface'
+import { Reviews } from '../reviews/review.model'
 
 const addCareHomeService = async (data: ICareHome) => {
   const result = await CareHome.create(data)
@@ -110,6 +112,24 @@ const createNewsEventService = async (payload: INewsEvent) => {
     throw error
   }
 }
+const createReviewService = async (payload: IReviews) => {
+  const session = await mongoose.startSession()
+  let result
+  try {
+    const home = await CareHome.findOne({ _id: payload.homeId })
+    if (!home) {
+      throw Error('Care Home Not Found')
+    }
+    home.reviews = payload
+    await home.save()
+    result = await Reviews.create(payload)
+    return result
+  } catch (error) {
+    await session.abortTransaction()
+    await session.endSession()
+    throw error
+  }
+}
 
 export const CareHomeService = {
   addCareHomeService,
@@ -119,4 +139,5 @@ export const CareHomeService = {
   createTeamService,
   createFacility,
   createNewsEventService,
+  createReviewService,
 }

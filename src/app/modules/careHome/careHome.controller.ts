@@ -85,6 +85,18 @@ const createNewsEvent = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+const createReviews = catchAsync(async (req: Request, res: Response) => {
+  const { ...data } = req.body
+
+  const result = await CareHomeService.createReviewService(data)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Review added successfully!',
+    data: result,
+  })
+})
 
 export const CareHomeController = {
   addCareHome,
@@ -94,4 +106,5 @@ export const CareHomeController = {
   createTeam,
   createFacility,
   createNewsEvent,
+  createReviews,
 }
