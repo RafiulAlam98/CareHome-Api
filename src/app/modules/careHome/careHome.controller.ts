@@ -26,7 +26,7 @@ const getAllCareHome = catchAsync(async (req: Request, res: Response) => {
   })
 })
 const getSingleCareHome = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id
+  const { id } = req.params
   const result = await CareHomeService.getSingleCareHomeService(id)
 
   sendResponse(res, {
