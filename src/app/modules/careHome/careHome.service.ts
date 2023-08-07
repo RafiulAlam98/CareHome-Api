@@ -1,7 +1,7 @@
-import mongoose from 'mongoose'
+import mongoose, { SortOrder } from 'mongoose'
 import { IAward } from '../awardRecognition/awardRecognition.interface'
 import { Award } from '../awardRecognition/awardRecognition.model'
-import { ICareHome } from './careHome.interface'
+import { ICareHome, ICareHomeFilters } from './careHome.interface'
 import { CareHome } from './careHome.model'
 import { Service } from '../careHomeService/careHomeService.model'
 import { IService } from '../careHomeService/careHomeService.interface'
@@ -13,14 +13,70 @@ import { INewsEvent } from '../newsEvent/newsEvent.interface'
 import { NewsEvent } from '../newsEvent/newsEvent.model'
 import { IReviews } from '../reviews/reviews.interface'
 import { Reviews } from '../reviews/review.model'
+import {
+  IGenericResponse,
+  IPaginationOptions,
+} from '../../../interfaces/pagination'
+import { careHomeSearchableFields } from './careHome.constant'
+import { paginationHelpers } from '../../../helpers/paginationHelpers'
 
 const addCareHomeService = async (data: ICareHome) => {
   const result = await CareHome.create(data)
   return result
 }
-const getAllCareHomeService = async () => {
-  const result = await CareHome.find()
-  return result
+
+const getAllCareHomeService = async (
+  paginationOptions: IPaginationOptions,
+  filters: ICareHomeFilters,
+): Promise<IGenericResponse<ICareHome[]>> => {
+  const { searchTerm, ...filtersData } = filters
+
+  const andConditions = []
+  if (searchTerm) {
+    andConditions.push({
+      $or: careHomeSearchableFields.map(field => ({
+        [field]: {
+          $regex: searchTerm,
+          $options: 'i',
+        },
+      })),
+    })
+  }
+
+  if (Object.keys(filtersData).length) {
+    andConditions.push({
+      $and: Object.entries(filtersData).map(([field, value]) => ({
+        [field]: value,
+      })),
+    })
+  }
+
+  const whereConditions =
+    andConditions.length > 0 ? { $and: andConditions } : {}
+
+  const { page, skip, limit, sortBy, sortOrder } =
+    paginationHelpers.calculatePagination(paginationOptions)
+
+  // sorting
+  const sortConditions: { [key: string]: SortOrder } = {}
+
+  if (sortBy && sortOrder) {
+    sortConditions[sortBy] = sortOrder
+  }
+
+  const result = await CareHome.find(whereConditions)
+    .sort(sortConditions)
+    .skip(skip)
+    .limit(limit)
+  const total = await CareHome.countDocuments()
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  }
 }
 const getSingleCareHomeService = async (id: string) => {
   const result = await CareHome.findOne({ _id: id })
@@ -127,8 +183,11 @@ const createReviewService = async (payload: IReviews) => {
     if (!home) {
       throw Error('Care Home Not Found')
     }
-    home.reviews = payload
+
+    home.reviews?.push(payload)
+
     await home.save()
+
     result = await Reviews.create(payload)
     return result
   } catch (error) {

@@ -37,6 +37,9 @@ export type ICareHome = {
   careHomeTeam?: ICareTeam
   facilities?: IFacilities
   newsEvent?: INewsEvent
-  reviews?: IReviews
+  reviews?: IReviews[]
 }
+
+export type ICareHomeFilters = { searchTerm?: string }
+
 export type CareHomeModel = Model<ICareHome, Record<string, unknown>>
