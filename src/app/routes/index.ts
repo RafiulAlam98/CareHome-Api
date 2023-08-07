@@ -1,6 +1,7 @@
 import express from 'express'
 import { CareHomeRoutes } from '../modules/careHome/careHome.routes'
 import { UserRoutes } from '../modules/user/user.routes'
+import { AuthRoutes } from '../modules/auth/auth.route'
 const router = express.Router()
 
 const moduleRoutes = [
@@ -9,8 +10,12 @@ const moduleRoutes = [
     route: CareHomeRoutes.router,
   },
   {
-    path: '/user/',
+    path: '/auth/sign-up',
     route: UserRoutes.router,
+  },
+  {
+    path: '/auth/login',
+    route: AuthRoutes.router,
   },
 ]
 
