@@ -15,10 +15,12 @@ const CareHomeSchema = new Schema<ICareHome>(
       type: String,
       required: true,
     },
-    img: {
-      type: String,
-      required: true,
-    },
+    img: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     price: {
       type: String,
       required: true,
@@ -77,97 +79,31 @@ const CareHomeSchema = new Schema<ICareHome>(
       type: String,
       required: true,
     },
-    awardRecognition: {
-      type: {
-        awardLogo: {
-          type: String,
-          required: true,
-        },
-        awardTitle: {
-          type: String,
-          required: true,
-        },
-        date: {
-          type: String,
-          required: true,
-        },
-        awardDescription: {
-          type: String,
-          required: true,
-        },
+    awardRecognition: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Award',
       },
-    },
+    ],
     careHomeService: {
-      type: {
-        serviceTitle: {
-          type: String,
-          required: true,
-        },
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'Service',
     },
     careHomeTeam: {
-      type: {
-        name: {
-          type: String,
-          required: true,
-        },
-        jobTitle: {
-          type: String,
-          required: true,
-        },
-        description: {
-          type: String,
-          required: true,
-        },
-        profileImg: {
-          type: String,
-          required: false,
-        },
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'Team',
     },
     facilities: {
-      type: {
-        facilityType: {
-          type: String,
-          required: true,
-        },
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'Facilty',
     },
     newsEvent: {
-      type: {
-        totalEvent: {
-          type: String,
-          required: true,
-        },
-        totalNews: {
-          type: String,
-          required: true,
-        },
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'NewsEvent',
     },
     reviews: {
-      type: {
-        overallExperience: {
-          type: Number,
-          required: true,
-        },
-        dateSubmitted: {
-          type: String,
-          required: true,
-        },
-        reviewerName: {
-          type: String,
-          required: true,
-        },
-        reviewPublisDate: {
-          type: String,
-          required: true,
-        },
-        reviewDescription: {
-          type: String,
-          required: true,
-        },
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'Reviews',
     },
   },
   {

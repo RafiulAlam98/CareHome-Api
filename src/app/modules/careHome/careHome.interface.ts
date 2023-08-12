@@ -1,4 +1,4 @@
-import { Model } from 'mongoose'
+import { Model, Types } from 'mongoose'
 import { IAward } from '../awardRecognition/awardRecognition.interface'
 import { IService } from '../careHomeService/careHomeService.interface'
 import { ICareTeam } from '../careHomeTeam/careHomeTeam.interface'
@@ -22,6 +22,7 @@ export type IPerformance = {
 export type ICareHome = {
   title: string
   location: string
+  website: string
   owner: string
   img: string
   price: string
@@ -32,12 +33,12 @@ export type ICareHome = {
   performance: IPerformance
   logo?: string
   quote?: string
-  awardRecognition?: IAward
-  careHomeService?: IService
-  careHomeTeam?: ICareTeam
-  facilities?: IFacilities
-  newsEvent?: INewsEvent
-  reviews?: IReviews[]
+  awardRecognition?: Types.ObjectId | IAward
+  careHomeService?: Types.ObjectId | IService
+  careHomeTeam?: Types.ObjectId | ICareTeam
+  facilities?: Types.ObjectId | IFacilities
+  newsEvent?: Types.ObjectId | INewsEvent
+  reviews?: Types.ObjectId | IReviews
 }
 
 export type ICareHomeFilters = { searchTerm?: string }
