@@ -6,6 +6,7 @@ import { AwardRoutes } from '../modules/awardRecognition/awardRecognition.routes
 import { ReviewRoutes } from '../modules/reviews/reviews.route'
 import { ServiceRoutes } from '../modules/careHomeService/careHomeService.routes'
 import { TeamRoutes } from '../modules/careHomeTeam/careHomeTeam.routes'
+import { FacilityRoutes } from '../modules/facilities/facilities.routes'
 const router = express.Router()
 
 const moduleRoutes = [
@@ -36,6 +37,10 @@ const moduleRoutes = [
   {
     path: '/teams',
     route: TeamRoutes.router,
+  },
+  {
+    path: '/facility',
+    route: FacilityRoutes.router,
   },
 ]
 
