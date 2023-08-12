@@ -7,6 +7,7 @@ import { ReviewRoutes } from '../modules/reviews/reviews.route'
 import { ServiceRoutes } from '../modules/careHomeService/careHomeService.routes'
 import { TeamRoutes } from '../modules/careHomeTeam/careHomeTeam.routes'
 import { FacilityRoutes } from '../modules/facilities/facilities.routes'
+import { NewsEventRoutes } from '../modules/newsEvent/newsEvent.routes'
 const router = express.Router()
 
 const moduleRoutes = [
@@ -41,6 +42,10 @@ const moduleRoutes = [
   {
     path: '/facility',
     route: FacilityRoutes.router,
+  },
+  {
+    path: '/newsEvent',
+    route: NewsEventRoutes.router,
   },
 ]
 

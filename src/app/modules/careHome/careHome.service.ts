@@ -59,22 +59,8 @@ const createFacility = async (payload: IFacilities) => {
   return result
 }
 const createNewsEventService = async (payload: INewsEvent) => {
-  const session = await mongoose.startSession()
-  let result
-  try {
-    const home = await CareHome.findOne({ _id: payload.homeId })
-    if (!home) {
-      throw Error('Care Home Not Found')
-    }
-    home.newsEvent = payload
-    await home.save()
-    result = await NewsEvent.create(payload)
-    return result
-  } catch (error) {
-    await session.abortTransaction()
-    await session.endSession()
-    throw error
-  }
+  const result = await NewsEvent.create(payload)
+  return result
 }
 const createReviewService = async (payload: IReviews) => {
   const session = await mongoose.startSession()
