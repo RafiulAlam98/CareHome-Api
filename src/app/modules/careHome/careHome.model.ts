@@ -7,6 +7,10 @@ const CareHomeSchema = new Schema<ICareHome>(
       type: String,
       required: true,
     },
+    website: {
+      type: String,
+      required: true,
+    },
     location: {
       type: String,
       required: true,
