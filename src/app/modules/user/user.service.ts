@@ -6,6 +6,11 @@ const createUser = async (user: IUser) => {
   const result = await User.create(user)
   return result
 }
+const createAdmin = async (user: IUser) => {
+  user.role = 'admin'
+  const result = await User.create(user)
+  return result
+}
 const getAllUser = async () => {
   const result = await User.find()
   return result
@@ -13,4 +18,5 @@ const getAllUser = async () => {
 export const UserService = {
   createUser,
   getAllUser,
+  createAdmin,
 }

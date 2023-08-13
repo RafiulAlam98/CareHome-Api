@@ -13,6 +13,8 @@ import { INewsEvent } from '../newsEvent/newsEvent.interface'
 import { NewsEvent } from '../newsEvent/newsEvent.model'
 import { IReviews } from '../reviews/reviews.interface'
 import { Reviews } from '../reviews/review.model'
+import ApiError from '../../error/ApiError'
+import httpStatus from 'http-status'
 
 const addCareHomeService = async (data: ICareHome) => {
   const result = await CareHome.create(data)
@@ -81,6 +83,18 @@ const createReviewService = async (payload: IReviews) => {
     throw error
   }
 }
+const deleteCareHome = async (id: string) => {
+  const isExist = await CareHome.findById(id)
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'care home not found !')
+  }
+  const careHome = await CareHome.findOneAndDelete({ _id: id })
+  if (!careHome) {
+    throw new ApiError(404, 'Failed to delete careHome')
+  }
+  return careHome
+}
 
 export const CareHomeService = {
   addCareHomeService,
@@ -92,4 +106,5 @@ export const CareHomeService = {
   createFacility,
   createNewsEventService,
   createReviewService,
+  deleteCareHome,
 }

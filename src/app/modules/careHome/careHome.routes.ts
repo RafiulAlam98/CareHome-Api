@@ -11,6 +11,7 @@ router.post('/facility', CareHomeController.createFacility)
 router.post('/news-event', CareHomeController.createNewsEvent)
 router.post('/reviews', CareHomeController.createReviews)
 router.get('/all-careHome/:id', CareHomeController.getSingleCareHome)
+router.delete('/all-careHome/:id', CareHomeController.deleteCareHome)
 router.get('/all-careHome', CareHomeController.getAllCareHome)
 
 export const CareHomeRoutes = { router }

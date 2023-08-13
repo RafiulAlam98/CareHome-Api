@@ -14,6 +14,16 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+const createAdmin = catchAsync(async (req: Request, res: Response) => {
+  const { ...admin } = req.body
+  const result = await UserService.createAdmin(admin)
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Admin created  successfully !',
+    data: result,
+  })
+})
 const getAllUser = catchAsync(async (req: Request, res: Response) => {
   const result = await UserService.getAllUser()
   sendResponse(res, {
@@ -26,5 +36,6 @@ const getAllUser = catchAsync(async (req: Request, res: Response) => {
 
 export const UserController = {
   createUser,
+  createAdmin,
   getAllUser,
 }
