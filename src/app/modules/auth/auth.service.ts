@@ -12,6 +12,8 @@ const loginUser = async (payload: IUserLogin) => {
 
   // check user exist
   const isUserExists = await User.isUserExists(mailId)
+  const roles = await User.find({ email: mailId })
+  const userRole = roles[0].role
   if (!isUserExists) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist')
   }
@@ -42,6 +44,7 @@ const loginUser = async (payload: IUserLogin) => {
   return {
     accessToken,
     refreshToken,
+    userRole,
   }
 }
 export const AuthService = {
