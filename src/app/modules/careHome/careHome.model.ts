@@ -6,8 +6,13 @@ const CareHomeSchema = new Schema<ICareHome>(
     title: {
       type: String,
       required: true,
+      unique: true,
     },
     website: {
+      type: String,
+      required: true,
+    },
+    types: {
       type: String,
       required: true,
     },

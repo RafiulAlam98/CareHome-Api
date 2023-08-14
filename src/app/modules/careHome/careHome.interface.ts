@@ -23,6 +23,7 @@ export type ICareHome = {
   title: string
   location: string
   website: string
+  types: string
   owner: string
   img: string
   price: string
