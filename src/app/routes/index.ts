@@ -9,6 +9,7 @@ import { TeamRoutes } from '../modules/careHomeTeam/careHomeTeam.routes'
 import { FacilityRoutes } from '../modules/facilities/facilities.routes'
 import { NewsEventRoutes } from '../modules/newsEvent/newsEvent.routes'
 import { ImageRoutes } from '../modules/images/images.routes'
+import { TourRoutes } from '../modules/tour/tour.routes'
 const router = express.Router()
 
 const moduleRoutes = [
@@ -55,6 +56,10 @@ const moduleRoutes = [
   {
     path: '/images',
     route: ImageRoutes.router,
+  },
+  {
+    path: '/tour',
+    route: TourRoutes.router,
   },
 ]
 

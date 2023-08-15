@@ -12,10 +12,6 @@ const CareHomeSchema = new Schema<ICareHome>(
       type: String,
       required: true,
     },
-    types: {
-      type: String,
-      required: true,
-    },
     location: {
       type: String,
       required: true,
