@@ -26,7 +26,19 @@ const getSingleAward = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+const deleteAward = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params
+  const result = await AwardService.deleteAward(id)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'award deleted successfully!',
+    data: result,
+  })
+})
 export const AwardController = {
   getAllAward,
   getSingleAward,
+  deleteAward,
 }
