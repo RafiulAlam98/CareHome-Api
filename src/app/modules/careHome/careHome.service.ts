@@ -15,6 +15,8 @@ import { IReviews } from '../reviews/reviews.interface'
 import { Reviews } from '../reviews/review.model'
 import ApiError from '../../error/ApiError'
 import httpStatus from 'http-status'
+import { ICareOffer } from '../careOffered/careOffered.interface'
+import { CareOffer } from '../careOffered/careOffered.model'
 
 const addCareHomeService = async (data: ICareHome) => {
   const result = await CareHome.create(data)
@@ -64,6 +66,10 @@ const createNewsEventService = async (payload: INewsEvent) => {
   const result = await NewsEvent.create(payload)
   return result
 }
+const createOffer = async (payload: ICareOffer) => {
+  const result = await CareOffer.create(payload)
+  return result
+}
 const createReviewService = async (payload: IReviews) => {
   const session = await mongoose.startSession()
   let result
@@ -107,4 +113,5 @@ export const CareHomeService = {
   createNewsEventService,
   createReviewService,
   deleteCareHome,
+  createOffer,
 }

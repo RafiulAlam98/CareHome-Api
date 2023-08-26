@@ -109,6 +109,18 @@ const createReviews = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+const createOffer = catchAsync(async (req: Request, res: Response) => {
+  const { ...data } = req.body
+
+  const result = await CareHomeService.createOffer(data)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Care Type added successfully!',
+    data: result,
+  })
+})
 const deleteCareHome = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params
 
@@ -133,4 +145,5 @@ export const CareHomeController = {
   createNewsEvent,
   createReviews,
   deleteCareHome,
+  createOffer,
 }
