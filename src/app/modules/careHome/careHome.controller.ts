@@ -23,7 +23,7 @@ const updateCareHome = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'New Care Home updated successfully!',
+    message: 'Care type added successfully!',
     data: result,
   })
 })
