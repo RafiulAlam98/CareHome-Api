@@ -15,6 +15,18 @@ const addCareHome = catchAsync(async (req: Request, res: Response) => {
     data: result,
   })
 })
+const updateCareHome = catchAsync(async (req: Request, res: Response) => {
+  const { ...data } = req.body
+  const { id } = req.params
+  const result = await CareHomeService.updateCareHome(data, id)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'New Care Home updated successfully!',
+    data: result,
+  })
+})
 const getAllCareHome = catchAsync(async (req: Request, res: Response) => {
   const result = await CareHomeService.getAllCareHomeService()
 
@@ -136,6 +148,7 @@ const deleteCareHome = catchAsync(async (req: Request, res: Response) => {
 
 export const CareHomeController = {
   addCareHome,
+  updateCareHome,
   getAllCareHome,
   getSingleCareHome,
   createAward,

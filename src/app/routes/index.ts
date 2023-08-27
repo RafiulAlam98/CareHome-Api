@@ -16,7 +16,7 @@ const router = express.Router()
 
 const moduleRoutes = [
   {
-    path: '/careHome/',
+    path: '/careHome',
     route: CareHomeRoutes.router,
   },
   {

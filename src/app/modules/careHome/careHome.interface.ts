@@ -18,12 +18,14 @@ export type IPerformance = {
   responsive: string
   safe: string
 }
+export type ICareTypes = {
+  careTypes: string
+}
 
 export type ICareHome = {
   title: string
   location: string
   website: string
-
   owner: string
   img: string
   price: string
@@ -34,6 +36,7 @@ export type ICareHome = {
   performance: IPerformance
   logo?: string
   quote?: string
+  caretypes?: ICareTypes
   awardRecognition?: Types.ObjectId | IAward
   careHomeService?: Types.ObjectId | IService
   careHomeTeam?: Types.ObjectId | ICareTeam

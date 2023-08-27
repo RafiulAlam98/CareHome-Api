@@ -80,6 +80,15 @@ const CareHomeSchema = new Schema<ICareHome>(
       type: String,
       required: true,
     },
+    caretypes: [
+      {
+        type: {
+          careTypes: {
+            type: String,
+          },
+        },
+      },
+    ],
     quote: {
       type: String,
       required: true,

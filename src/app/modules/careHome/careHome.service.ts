@@ -22,6 +22,13 @@ const addCareHomeService = async (data: ICareHome) => {
   const result = await CareHome.create(data)
   return result
 }
+const updateCareHome = async (data: ICareHome, id: string) => {
+  const result = await CareHome.updateOne(
+    { _id: id },
+    { $push: { caretypes: data } },
+  )
+  return result
+}
 
 const getAllCareHomeService = async () => {
   const result = await CareHome.find({})
@@ -104,6 +111,7 @@ const deleteCareHome = async (id: string) => {
 
 export const CareHomeService = {
   addCareHomeService,
+  updateCareHome,
   getAllCareHomeService,
   getSingleCareHomeService,
   createAwardService,
